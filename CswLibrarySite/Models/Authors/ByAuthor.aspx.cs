@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.Entity;
+using Microsoft.AspNet.FriendlyUrls.ModelBinding;
+using CswLibrarySite.Models;
 using Newtonsoft.Json;
 using CswLibrarySite.CswBookAPI;
 
@@ -48,8 +52,14 @@ namespace CswLibrarySite.Models.Authors
             //webService.GetBooksByAuthorAsync(Request.QueryString["AuthorID"]);
             
             CswLibrarySite.Models.Books.CswBookAPI webService = new Books.CswBookAPI();
+
             var result = JsonConvert.DeserializeObject<List<BooksListJsonResult>>(webService.GetBooksByAuthorAsync(Request.QueryString["AuthorID"]));
-            dataGridView.DataSource = result;
+            ListViewBooks.DataSource = result;
+            ListViewBooks.DataBind();
+
+            //dataGridView.DataSource = result;
+            //dataGridView.DataBind();
+
         }
     }
 }
