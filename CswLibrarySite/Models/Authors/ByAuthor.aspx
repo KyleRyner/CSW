@@ -1,16 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ByAuthor.aspx.cs" Inherits="CswLibrarySite.Models.Authors.ByAuthor" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ByAuthor.aspx.cs" MasterPageFile="~/Site.Master" Inherits="CswLibrarySite.Models.Authors.ByAuthor" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
-        <asp:GridView ID="dataGridView" runat="server"></asp:GridView>
+
+        <asp:GridView ID="dataGridView" runat="server" AutoGenerateColumns="True" 
+            Width="211px">
+
+        </asp:GridView>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>

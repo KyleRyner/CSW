@@ -29,12 +29,27 @@ namespace CswLibrarySite.Models.Authors
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            CswBookAPI.CswBookAPI webService = new CswBookAPI.CswBookAPI();
-            //Console.WriteLine(webService.GetAllBooksAsync());
-            //Console.ReadLine();
-            //System.Diagnostics.Debug.Write(webService.GetBooksByAuthorAsync("1"));
-            //var result = JsonConvert.DeserializeObject<List<BooksListJsonResult>>(webService.GetAllBooksAsync());
-            //dataGridView.DataSource = result;
+            
+            try
+            {
+                FillData();
+            }
+
+            catch (Exception ex)
+            {
+                //Exception here 
+                //lbl_err.Text = ex.Message;
+            }
+        }
+
+        void FillData()
+        {
+            //CswBookAPI.CswBookAPI webService = new CswBookAPI.CswBookAPI();
+            //webService.GetBooksByAuthorAsync(Request.QueryString["AuthorID"]);
+            
+            CswLibrarySite.Models.Books.CswBookAPI webService = new Books.CswBookAPI();
+            var result = JsonConvert.DeserializeObject<List<BooksListJsonResult>>(webService.GetBooksByAuthorAsync(Request.QueryString["AuthorID"]));
+            dataGridView.DataSource = result;
         }
     }
 }

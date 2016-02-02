@@ -90,9 +90,14 @@ namespace CswLibrarySite.Models.Books
         public string GetBooksByAuthorAsync(string pAuthorID)
         {
             
+            //no Id?
+            if (pAuthorID == null)
+                pAuthorID = "1";
+
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
             System.Diagnostics.Debug.Write("\n GetBooksByAuthorAsync");
-            SqlCommand cmd = new SqlCommand("Select * from vwBooks Where AuthorID = " + pAuthorID + " Order by Title", conn);
+            string sqlquery = "Select * from vwBooks Where AuthorID = " + pAuthorID + " Order by Title";
+            SqlCommand cmd = new SqlCommand(sqlquery, conn);
 
             //Async conn
             //int result = AsyncMethod(conn, cmd).Result;
@@ -136,10 +141,15 @@ namespace CswLibrarySite.Models.Books
         [WebMethod]
         public string GetBooksByCategoryAsync(string pCategoryID)
         {
+
+            //no Id?
+            if (pCategoryID == null)
+                pCategoryID = "1";
             
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-            System.Diagnostics.Debug.Write("\n GetBooksByAuthorAsync");
-            SqlCommand cmd = new SqlCommand("Select * from vwBooks Where CategoryID = " + pCategoryID + " Order by Title", conn);
+            System.Diagnostics.Debug.Write("\n GetBooksByCategoryAsync");
+            string sqlquery = "Select * from vwBooks Where CategoryID = " + pCategoryID + " Order by Title";
+            SqlCommand cmd = new SqlCommand(sqlquery, conn);
 
             //Async conn
             //int result = AsyncMethod(conn, cmd).Result;
